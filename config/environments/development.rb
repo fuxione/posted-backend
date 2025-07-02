@@ -28,6 +28,12 @@ Rails.application.configure do
   # Change to :null_store to avoid any caching.
   config.cache_store = :memory_store
 
+  # disable generators
+  config.generators do |g|
+    g.helper false
+    g.test_framework nil
+  end
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
