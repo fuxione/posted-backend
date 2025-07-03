@@ -18,7 +18,7 @@ class CreateRequestLogs < ActiveRecord::Migration[8.0]
       t.text :request_body, null: false
       t.text :response_body, null: false
       t.decimal :total_time, precision: 10, scale: 3, null: false # milliseconds precision 0.001
-      t.jsonb :metadata, null: false
+      t.jsonb :metadata, null: true
 
       t.timestamps
     end
