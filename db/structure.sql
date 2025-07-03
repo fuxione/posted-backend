@@ -214,7 +214,7 @@ CREATE TABLE public.request_logs (
     request_body text NOT NULL,
     response_body text NOT NULL,
     total_time numeric(10,3) NOT NULL,
-    metadata jsonb NOT NULL,
+    metadata jsonb,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     CONSTRAINT request_logs_exactly_one_target CHECK ((((provider_id IS NOT NULL) AND (buyer_id IS NULL)) OR ((provider_id IS NULL) AND (buyer_id IS NOT NULL))))

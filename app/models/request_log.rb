@@ -3,7 +3,7 @@
 # Table name: request_logs
 #
 #  id            :bigint           not null, primary key
-#  metadata      :jsonb            not null
+#  metadata      :jsonb
 #  method        :string           not null
 #  request_body  :text             not null
 #  response_body :text             not null
