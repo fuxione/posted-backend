@@ -31,4 +31,5 @@
 #  fk_rails_...  (request_log_id => request_logs.id)
 #
 class StackResult < ApplicationRecord
+  has_one :request_log
 end
