@@ -8,6 +8,8 @@ class Api::LeadsController < ApiController
   end
 
   def status
-    success
+    lead = Lead.new
+
+    success(LeadBlueprint.render_as_hash(lead))
   end
 end
