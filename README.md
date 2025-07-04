@@ -1,7 +1,7 @@
 ### 🚅 Posted Backend 💨
 
 ```bash
-rails rails db:migrate:reset && bundle exec annotaterb models && bundle exec erd
+rails rails db:migrate:reset && bundle exec annotaterb models && bundle exec erd --direct
 rails s
 ```
 
@@ -19,7 +19,7 @@ rails s
 0s                                                        60s
 <-----------------------------------------------------------> STACK ->
 [------------- 1 -------------]
-|_[b1] ------* 
+|_[b1] ------*
 |_[b2] ---*
 |_[b5] ------------------------x
                                 [------------- 2 -------------]
