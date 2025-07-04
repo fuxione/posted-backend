@@ -13,7 +13,7 @@ class CreateLeads < ActiveRecord::Migration[8.0]
       t.string :first_name
       t.string :last_name
       t.string :email
-      t.string :primary_phone
+      t.string :phone
       t.string :work_phone
       t.string :address
       t.string :address2

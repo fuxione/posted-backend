@@ -18,7 +18,7 @@
 #  loan_amount   :string
 #  loan_types    :string           is an Array
 #  path          :string           not null
-#  primary_phone :string
+#  phone         :string
 #  query         :string           not null
 #  referrer      :string           not null
 #  ssn           :string

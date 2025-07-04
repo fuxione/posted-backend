@@ -148,7 +148,7 @@ CREATE TABLE public.leads (
     first_name character varying,
     last_name character varying,
     email character varying,
-    primary_phone character varying,
+    phone character varying,
     work_phone character varying,
     address character varying,
     address2 character varying,
