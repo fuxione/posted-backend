@@ -32,8 +32,8 @@ class CreateLeads < ActiveRecord::Migration[8.0]
       t.string  :jornaya_id
       t.boolean :tcpa_consent
       t.boolean :fcra_consent
-      t.text    :tcpa_language
-      t.text    :fcra_language
+      t.string  :tcpa_language
+      t.string  :fcra_language
 
       t.timestamps
     end

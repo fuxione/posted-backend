@@ -10,7 +10,7 @@
 #  date_of_birth :string
 #  email         :string
 #  fcra_consent  :boolean
-#  fcra_language :text
+#  fcra_language :string
 #  first_name    :string
 #  host          :string           not null
 #  ip_address    :string           not null
@@ -24,7 +24,7 @@
 #  ssn           :string
 #  state         :string
 #  tcpa_consent  :boolean
-#  tcpa_language :text
+#  tcpa_language :string
 #  user_agent    :string
 #  work_phone    :string
 #  zip           :string

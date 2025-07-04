@@ -163,8 +163,8 @@ CREATE TABLE public.leads (
     jornaya_id character varying,
     tcpa_consent boolean,
     fcra_consent boolean,
-    tcpa_language text,
-    fcra_language text,
+    tcpa_language character varying,
+    fcra_language character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
