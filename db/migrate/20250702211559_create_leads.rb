@@ -1,13 +1,13 @@
 class CreateLeads < ActiveRecord::Migration[8.0]
   def change
     create_table :leads, id: :uuid do |t|
-      # lead creation fields (required)
+      # lead creation fields
       t.string :host,       null: false
       t.string :path,       null: false
-      t.string :query,      null: false
-      t.string :referrer,   null: false
-      t.string :user_agent, null: false
+      t.jsonb  :query,      null: false, default: {}
       t.string :ip_address, null: false
+      t.string :referrer
+      t.string :user_agent
 
       # personal fields
       t.string :first_name

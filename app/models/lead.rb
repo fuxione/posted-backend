@@ -19,13 +19,13 @@
 #  loan_types    :string           is an Array
 #  path          :string           not null
 #  phone         :string
-#  query         :string           not null
-#  referrer      :string           not null
+#  query         :jsonb            not null
+#  referrer      :string
 #  ssn           :string
 #  state         :string
 #  tcpa_consent  :boolean
 #  tcpa_language :text
-#  user_agent    :string           not null
+#  user_agent    :string
 #  work_phone    :string
 #  zip           :string
 #  created_at    :datetime         not null
