@@ -1,17 +1,11 @@
 class ApiController < ActionController::API
-  before_action :set_seq
-
   def success(data = nil)
-    render json: { status: "success", data: data, seq: @seq }
+    payload = { status: "success", data: data }
+    payload[:seq] = params[:seq] if params[:seq].present?
+    render json: payload
   end
 
   def error(messages, code = 422)
-    render json: { status: "error", errors: messages, seq: @seq }, status: code
-  end
-
-  private
-
-  def set_seq
-    @seq = params[:seq] || 0
+    render json: { status: "error", errors: messages }, status: code
   end
 end
