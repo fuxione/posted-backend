@@ -1,5 +1,4 @@
 class Api::LeadsController < ApiController
-
   def index
     success
   end
@@ -11,5 +10,4 @@ class Api::LeadsController < ApiController
   def status
     success
   end
-
 end

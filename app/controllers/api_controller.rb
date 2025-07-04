@@ -1,5 +1,4 @@
 class ApiController < ActionController::API
-
   before_action :set_seq
 
   def success(data = nil)
@@ -15,5 +14,4 @@ class ApiController < ActionController::API
   def set_seq
     @seq = params[:seq] || 0
   end
-
 end
