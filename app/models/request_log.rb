@@ -31,6 +31,7 @@
 #
 class RequestLog < ApplicationRecord
   belongs_to :lead
+  belongs_to :stack_result, optional: true
   belongs_to :provider, optional: true
   belongs_to :buyer, optional: true
 end
