@@ -150,7 +150,7 @@ CREATE TABLE public.leads (
     email character varying,
     primary_phone character varying,
     work_phone character varying,
-    address1 character varying,
+    address character varying,
     address2 character varying,
     city character varying,
     state character varying,

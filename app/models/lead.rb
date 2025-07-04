@@ -3,7 +3,7 @@
 # Table name: leads
 #
 #  id            :uuid             not null, primary key
-#  address1      :string
+#  address       :string
 #  address2      :string
 #  city          :string
 #  country       :string

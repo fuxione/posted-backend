@@ -35,5 +35,5 @@
 class LeadBlueprint < Blueprinter::Base
   identifier :id
 
-  fields :address1, :address2
+  fields :address, :address2
 end
