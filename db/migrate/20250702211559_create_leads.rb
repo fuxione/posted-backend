@@ -5,8 +5,8 @@ class CreateLeads < ActiveRecord::Migration[8.0]
       t.string :host,       null: false
       t.string :path,       null: false
       t.jsonb  :query,      null: false, default: {}
-      t.string :ip_address, null: false
       t.string :referrer
+      t.string :ip_address, null: false
       t.string :user_agent
 
       # UI "ATTRIBUTES"

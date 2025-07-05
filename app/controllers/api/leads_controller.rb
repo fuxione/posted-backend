@@ -1,7 +1,13 @@
 class Api::LeadsController < ApiController
   def create
-    lead = Lead.new
-    lead.id = SecureRandom.uuid
+    lead = Lead.create!(
+      host: params[:host],
+      path: params[:path],
+      query: params[:query],
+      referrer: params[:referrer],
+      ip_address: request.remote_ip,
+      user_agent: request.user_agent,
+    )
 
     success(LeadBlueprint.render_as_hash(lead))
   end
