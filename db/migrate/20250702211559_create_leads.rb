@@ -30,6 +30,8 @@ class CreateLeads < ActiveRecord::Migration[8.0]
       t.string :loan_amount
       t.string :debt_amount
       t.string :monthly_income
+      t.string :employment_status
+      t.string :employment_pay_frequency
       t.string :credit_score
 
       # META_FIELDS

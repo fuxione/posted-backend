@@ -161,6 +161,8 @@ CREATE TABLE public.leads (
     loan_amount character varying,
     debt_amount character varying,
     monthly_income character varying,
+    employment_status character varying,
+    employment_pay_frequency character varying,
     credit_score character varying,
     meta_fields jsonb DEFAULT '{}'::jsonb,
     txid character varying,
