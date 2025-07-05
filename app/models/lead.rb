@@ -69,7 +69,9 @@ class Lead < ApplicationRecord
     "credit_score"
   ].freeze
 
-  META_FIELDS = []
+  META_FIELDS = [
+    "debt_type_multi"
+  ]
 
   VERTICALS = %w[
     debt
@@ -150,6 +152,9 @@ class Lead < ApplicationRecord
 
     assign_attributes(all_fields.slice(*FIELDS))
 
-    # TODO handle meta_fields
+    if meta_keys.present?
+      self.meta_fields ||= {}
+      self.meta_fields = meta_fields.merge(all_fields.slice(*META_FIELDS))
+    end
   end
 end

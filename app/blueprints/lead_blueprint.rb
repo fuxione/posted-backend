@@ -36,10 +36,18 @@ class LeadFieldsBlueprint < Blueprinter::Base
   fields *Lead::FIELDS
 end
 
+class LeadMetaFieldsBlueprint < Blueprinter::Base
+  fields *Lead::META_FIELDS
+end
+
 class LeadBlueprint < Blueprinter::Base
   identifier :id
 
   field :fields do |lead|
     LeadFieldsBlueprint.render_as_hash(lead)
+  end
+
+  field :meta_fields do |lead|
+    LeadMetaFieldsBlueprint.render_as_hash(lead.meta_fields || {})
   end
 end
