@@ -1,9 +1,11 @@
 class ApiController < ActionController::API
+  rescue_from ActionController::UnpermittedParameters, with: :unpermitted_params
+
   def success(data = nil)
     payload = {
       status: "success",
       data: data,
-      meta: { seq: params[:seq] || 0 },
+      meta: { seq: params[:seq] || 0 }
     }
     render json: payload
   end
@@ -11,7 +13,13 @@ class ApiController < ActionController::API
   def error(messages, code = 422)
     render json: {
       status: "error",
-      errors: messages,
+      messages: messages
     }, status: code
+  end
+
+  private
+
+  def unpermitted_params(e)
+    error(e.message)
   end
 end
