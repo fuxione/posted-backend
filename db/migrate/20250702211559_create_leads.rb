@@ -25,11 +25,12 @@ class CreateLeads < ActiveRecord::Migration[8.0]
       t.string :country
       t.string :date_of_birth
       t.string :ssn
-      t.string :credit_score
 
       # loan
       t.string :loan_amount
       t.string :debt_amount
+      t.string :monthly_income
+      t.string :credit_score
 
       # META_FIELDS
       # ===========
