@@ -73,7 +73,7 @@ class Lead < ApplicationRecord
     debt
     personal_loan
     business_loan
-  ]
+  ].freeze
 
   EMPLOYMENT_STATUS = %w[
     employed
@@ -84,14 +84,14 @@ class Lead < ApplicationRecord
     self_employed
     retired
     other
-  ]
+  ].freeze
 
   EMPLOYMENT_PAY_FREQUENCY = %w[
     weekly
     biweekly
     twice_monthly
     monthly
-  ]
+  ].freeze
 
   has_many :request_logs
   has_many :stack_results
