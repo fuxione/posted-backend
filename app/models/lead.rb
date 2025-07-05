@@ -31,6 +31,7 @@
 #  txid                     :string
 #  user_agent               :string
 #  vertical                 :string           not null
+#  wid                      :integer          not null
 #  work_phone               :string
 #  zip                      :string
 #  created_at               :datetime         not null
@@ -120,6 +121,7 @@ class Lead < ApplicationRecord
   validates :credit_score,             presence: true, allow_nil: true, range_amount: { currency: false }
 
   # internal
+  validates :wid,           presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :vertical,      presence: true, inclusion: { in: VERTICALS, message: "must be a valid vertical" }
   validates :txid,          presence: true, allow_nil: true
   validates :jornaya_id,    presence: true, allow_nil: true

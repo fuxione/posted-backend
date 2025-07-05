@@ -36,11 +36,12 @@ class CreateLeads < ActiveRecord::Migration[8.0]
       t.jsonb :meta_fields, default: {}
 
       # INTERNAL_FIELDS
-      t.string :vertical, null: false
-      t.string :txid
-      t.string :jornaya_id
-      t.string :tcpa_language
-      t.string :fcra_language
+      t.integer :wid,      null: false
+      t.string  :vertical, null: false
+      t.string  :txid
+      t.string  :jornaya_id
+      t.string  :tcpa_language
+      t.string  :fcra_language
 
       t.timestamps
     end
