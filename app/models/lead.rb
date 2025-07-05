@@ -30,6 +30,7 @@
 #  tcpa_language            :string
 #  txid                     :string
 #  user_agent               :string
+#  vertical                 :string
 #  work_phone               :string
 #  zip                      :string
 #  created_at               :datetime         not null
@@ -63,6 +64,12 @@ class Lead < ApplicationRecord
     tcpa_language
     fcra_language
   ].freeze
+
+  VERTICALS = %w[
+    debt
+    personal_loan
+    business_loan
+  ]
 
   EMPLOYMENT_STATUS = %w[
     employed
@@ -112,6 +119,7 @@ class Lead < ApplicationRecord
   validates :credit_score,             presence: true, allow_nil: true, range_amount: { currency: false }
 
   # internal
+  validates :vertical,      presence: true, allow_nil: true, inclusion: { in: VERTICALS, message: "must be a valid vertical" }
   validates :txid,          presence: true, allow_nil: true
   validates :jornaya_id,    presence: true, allow_nil: true
   validates :tcpa_language, presence: true, allow_nil: true

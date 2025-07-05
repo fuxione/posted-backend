@@ -1,6 +1,7 @@
 class Api::LeadsController < ApiController
   def create
     lead = Lead.create!(
+      vertical: params[:vertical],
       host: params[:host],
       path: params[:path],
       query: params[:query],

@@ -165,6 +165,7 @@ CREATE TABLE public.leads (
     employment_pay_frequency character varying,
     credit_score character varying,
     meta_fields jsonb DEFAULT '{}'::jsonb,
+    vertical character varying,
     txid character varying,
     jornaya_id character varying,
     tcpa_language character varying,

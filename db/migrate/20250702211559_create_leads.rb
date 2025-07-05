@@ -42,6 +42,7 @@ class CreateLeads < ActiveRecord::Migration[8.0]
       # INTERNAL_FIELDS
       # ===============
 
+      t.string :vertical
       t.string :txid
       t.string :jornaya_id
       t.string :tcpa_language
