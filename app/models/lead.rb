@@ -7,7 +7,9 @@
 #  address2      :string
 #  city          :string
 #  country       :string
+#  credit_score  :string
 #  date_of_birth :string
+#  debt_amount   :string
 #  email         :string
 #  fcra_language :string
 #  first_name    :string
@@ -35,9 +37,30 @@ class Lead < ApplicationRecord
   has_many :request_logs
   has_many :stack_results
 
-  validates :host,       presence: true
-  validates :path,       presence: true
-  validates :ip_address, presence: true
+  validates :host,          presence: true
+  validates :path,          presence: true
+  validates :ip_address,    presence: true
+
+  validates :first_name,    presence: true, allow_nil: true
+  validates :last_name,     presence: true, allow_nil: true
+  validates :email,         presence: true, allow_nil: true, format: { with: URI::MailTo::EMAIL_REGEXP,                 message: "must be a valid email address" }
+  validates :phone,         presence: true, allow_nil: true, phone: true
+  validates :work_phone,    presence: true, allow_nil: true, phone: true
+  validates :address,       presence: true, allow_nil: true
+  validates :city,          presence: true, allow_nil: true
+  validates :state,         presence: true, allow_nil: true, inclusion: { in: ISO3166::Country["US"].subdivisions.keys, message: "must be a valid ISO 3166-2 US state code" }
+  validates :zip,           presence: true, allow_nil: true, format: { with: /\A\d{5}(-\d{4})?\z/,                      message: "must be in the format of 12345 or 12345-6789" }
+  validates :country,       presence: true, allow_nil: true, inclusion: { in: [ "US" ] }
+  validates :date_of_birth, presence: true, allow_nil: true, date_of_birth: true
+  validates :ssn,           presence: true, allow_nil: true, format: { with: /\A\d{3}-\d{2}-\d{4}\z/, message: "must be in the format of XXX-XX-XXXX" }
+  validates :credit_score,  presence: true, allow_nil: true, range_amount: { currency: false }
+  validates :loan_amount,   presence: true, allow_nil: true, range_amount: { currency: true }
+  validates :debt_amount,   presence: true, allow_nil: true, range_amount: { currency: true }
+
+  validates :txid,          presence: true, allow_nil: true
+  validates :jornaya_id,    presence: true, allow_nil: true
+  validates :tcpa_language, presence: true, allow_nil: true
+  validates :fcra_language, presence: true, allow_nil: true
 
   INTERNAL_FIELDS = %w[
     txid

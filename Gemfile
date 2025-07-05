@@ -5,6 +5,7 @@ ruby file: ".ruby-version"
 gem "rails", "~> 8.0.2"
 gem "blueprinter"
 gem "bootsnap", require: false # Reduces boot times through caching; required in config/boot.rb
+gem "countries"
 gem "cssbundling-rails" # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem "http"
 gem "jsbundling-rails" # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]

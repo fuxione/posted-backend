@@ -4,8 +4,8 @@ class CreateLeads < ActiveRecord::Migration[8.0]
       t.string :host,       null: false
       t.string :path,       null: false
       t.jsonb  :query,      null: false, default: {}
-      t.string :referrer
       t.string :ip_address, null: false
+      t.string :referrer
       t.string :user_agent
 
       # USER_FIELDS
@@ -24,10 +24,12 @@ class CreateLeads < ActiveRecord::Migration[8.0]
       t.string :zip
       t.string :country
       t.string :date_of_birth
+      t.string :ssn
+      t.string :credit_score
 
       # loan
       t.string :loan_amount
-      t.string :ssn
+      t.string :debt_amount
 
       # META_FIELDS
       # ===========
