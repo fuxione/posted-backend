@@ -25,6 +25,7 @@
 #  state         :string
 #  tcpa_consent  :boolean
 #  tcpa_language :string
+#  txid          :string
 #  user_agent    :string
 #  work_phone    :string
 #  zip           :string

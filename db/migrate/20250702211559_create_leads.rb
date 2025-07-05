@@ -1,7 +1,7 @@
 class CreateLeads < ActiveRecord::Migration[8.0]
   def change
     create_table :leads, id: :uuid do |t|
-      # lead creation fields
+      # CREATE
       t.string :host,       null: false
       t.string :path,       null: false
       t.jsonb  :query,      null: false, default: {}
@@ -9,7 +9,11 @@ class CreateLeads < ActiveRecord::Migration[8.0]
       t.string :referrer
       t.string :user_agent
 
-      # personal fields
+      # UI "ATTRIBUTES"
+      t.string :txid
+      t.string :jornaya_id
+
+      # UI "FIELDS"
       t.string :first_name
       t.string :last_name
       t.string :email
@@ -28,8 +32,7 @@ class CreateLeads < ActiveRecord::Migration[8.0]
       t.string :loan_amount             #  3 formats: n, min:max, n+
       t.string :ssn
 
-      # tracking fields
-      t.string  :jornaya_id
+      # consent fields
       t.boolean :tcpa_consent
       t.boolean :fcra_consent
       t.string  :tcpa_language

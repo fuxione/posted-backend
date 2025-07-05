@@ -32,8 +32,33 @@
 #  updated_at    :datetime         not null
 #  jornaya_id    :string
 #
+class LeadAttributeBlueprint < Blueprinter::Base
+  fields :txid, :jornaya_id
+end
+
+class LeadFieldBlueprint < Blueprinter::Base
+  fields :first_name,
+    :last_name,
+    :email,
+    :phone,
+    :work_phone,
+    :address,
+    :address2,
+    :city,
+    :state,
+    :zip,
+    :country,
+    :date_of_birth
+end
+
 class LeadBlueprint < Blueprinter::Base
   identifier :id
 
-  fields :address, :address2
+  field :fields do |lead|
+    LeadFieldBlueprint.render_as_hash(lead)
+  end
+
+  field :attributes do |lead|
+    LeadAttributeBlueprint.render_as_hash(lead)
+  end
 end
