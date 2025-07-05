@@ -17,9 +17,12 @@ class Api::LeadsController < ApiController
   def update
     lead = Lead.find(params[:id])
 
-    lead.assign_fields!(params[:fields], Lead::FIELDS)
+    lead.assign_fields(params[:fields])
 
-    lead.evaluate_meta_fields(params[:meta_fields])
+    # save clears previous errors, so we have to check prior to saving.
+    # normally one would never need to do this, except that we want full
+    # manual control over the whitelisted fields, some of which are virtual
+    return error(lead.errors.full_messages) if lead.errors.any?
 
     if lead.save
       return success(LeadBlueprint.render_as_hash(lead))

@@ -69,6 +69,8 @@ class Lead < ApplicationRecord
     "credit_score"
   ].freeze
 
+  META_FIELDS = []
+
   VERTICALS = %w[
     debt
     personal_loan
@@ -131,22 +133,23 @@ class Lead < ApplicationRecord
   validates :tcpa_language, presence: true, allow_nil: true
   validates :fcra_language, presence: true, allow_nil: true
 
-  def assign_fields!(fields, whitelist)
-    fields ||= {}
-    unpermitted = fields.keys - whitelist
-    raise ActionController::UnpermittedParameters.new(unpermitted) if unpermitted.present?
+  def assign_fields(raw_fields)
+    # IMPORTANT: we disable strong params here intentionally because we manage
+    # our own whitelist, just be aware that it's disabled
+    all_fields = raw_fields.to_unsafe_h
 
-    fields.each do |field, value|
-      self[field] = value
-    end
-  end
+    keys       = all_fields.keys
+    field_keys = keys & FIELDS
+    meta_keys  = keys & META_FIELDS
+    invalid    = keys - (FIELDS + META_FIELDS)
 
-  def evaluate_meta_fields(meta_fields)
-    # probably create a new service that just handles all these
-    # these are all the derivation fields like...
-    #
-    # { purpose_with_amount: "debt_consolidation:20000" | "" }
-    #   -> loan_purpose: debt_consolidation
-    #   -> loan_amount: 20_000
+    errors.add(:base, "invalid fields or meta_fields: #{invalid.join(", ")}") if invalid.present?
+    errors.add(:base, "must assign at least one field or meta_field") if field_keys.blank? && meta_keys.blank?
+    errors.add(:base, "cannot assign both fields and meta_fields at the same time") if field_keys.present? && meta_keys.present?
+    errors.add(:base, "can only assign one meta_field at a time") if meta_keys.size > 1
+
+    assign_attributes(all_fields.slice(*FIELDS))
+
+    # TODO handle meta_fields
   end
 end

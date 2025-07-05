@@ -1,5 +1,6 @@
 class ApiController < ActionController::API
   rescue_from ActionController::UnpermittedParameters, with: :unpermitted_params
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
   def success(data = nil)
     payload = {
@@ -21,5 +22,9 @@ class ApiController < ActionController::API
 
   def unpermitted_params(e)
     error(e.message)
+  end
+
+  def not_found
+    error("resource not found", 404)
   end
 end
