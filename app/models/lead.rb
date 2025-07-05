@@ -35,9 +35,14 @@ class Lead < ApplicationRecord
   has_many :request_logs
   has_many :stack_results
 
+  validates :host,       presence: true
+  validates :path,       presence: true
+  validates :ip_address, presence: true
+
   INTERNAL_FIELDS = %w[
     txid
     jornaya_id
+    tcpa_language
   ].freeze
 
   USER_FIELDS = %w[

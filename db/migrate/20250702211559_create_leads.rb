@@ -8,18 +8,8 @@ class CreateLeads < ActiveRecord::Migration[8.0]
       t.string :ip_address, null: false
       t.string :user_agent
 
-      # INTERNAL_FIELDS
-      # ===============
-
-      t.string :txid
-      t.string :jornaya_id
-
       # USER_FIELDS
       # ===========
-
-      # consent
-      t.string :tcpa_language
-      t.string :fcra_language
 
       # profile
       t.string :first_name
@@ -40,7 +30,17 @@ class CreateLeads < ActiveRecord::Migration[8.0]
       t.string :ssn
 
       # META_FIELDS
+      # ===========
+
       t.jsonb :meta_fields, default: {}
+
+      # INTERNAL_FIELDS
+      # ===============
+
+      t.string :txid
+      t.string :jornaya_id
+      t.string :tcpa_language
+      t.string :fcra_language
 
       t.timestamps
     end
