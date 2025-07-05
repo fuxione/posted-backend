@@ -9,21 +9,19 @@
 #  country       :string
 #  date_of_birth :string
 #  email         :string
-#  fcra_consent  :boolean
 #  fcra_language :string
 #  first_name    :string
 #  host          :string           not null
 #  ip_address    :string           not null
 #  last_name     :string
 #  loan_amount   :string
-#  loan_types    :string           is an Array
+#  meta_fields   :jsonb
 #  path          :string           not null
 #  phone         :string
 #  query         :jsonb            not null
 #  referrer      :string
 #  ssn           :string
 #  state         :string
-#  tcpa_consent  :boolean
 #  tcpa_language :string
 #  txid          :string
 #  user_agent    :string
@@ -65,5 +63,14 @@ class Lead < ApplicationRecord
     fields.each do |field, value|
       self[field] = value
     end
+  end
+
+  def evaluate_meta_fields(meta_fields)
+    # probably create a new service that just handles all these
+    # these are all the derivation fields like...
+    #
+    # { purpose_with_amount: "debt_consolidation:20000" | "" }
+    #   -> loan_purpose: debt_consolidation
+    #   -> loan_amount: 20_000
   end
 end

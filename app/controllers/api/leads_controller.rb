@@ -18,6 +18,8 @@ class Api::LeadsController < ApiController
     lead.assign_fields!(params[:internal_fields], Lead::INTERNAL_FIELDS)
     lead.assign_fields!(params[:user_fields], Lead::USER_FIELDS)
 
+    lead.evaluate_meta_fields(params[:meta_fields])
+
     if lead.save
       return success(LeadBlueprint.render_as_hash(lead))
     end

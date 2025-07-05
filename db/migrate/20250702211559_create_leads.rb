@@ -1,7 +1,6 @@
 class CreateLeads < ActiveRecord::Migration[8.0]
   def change
     create_table :leads, id: :uuid do |t|
-      # CREATE
       t.string :host,       null: false
       t.string :path,       null: false
       t.jsonb  :query,      null: false, default: {}
@@ -9,11 +8,20 @@ class CreateLeads < ActiveRecord::Migration[8.0]
       t.string :ip_address, null: false
       t.string :user_agent
 
-      # UI "ATTRIBUTES"
+      # INTERNAL_FIELDS
+      # ===============
+
       t.string :txid
       t.string :jornaya_id
 
-      # UI "FIELDS"
+      # USER_FIELDS
+      # ===========
+
+      # consent
+      t.string :tcpa_language
+      t.string :fcra_language
+
+      # profile
       t.string :first_name
       t.string :last_name
       t.string :email
@@ -27,16 +35,12 @@ class CreateLeads < ActiveRecord::Migration[8.0]
       t.string :country
       t.string :date_of_birth
 
-      # loan fields
-      t.string :loan_types, array: true #  https://engine.tech/docs/api-reference/#tocS_LoanPurpose (array      of strings -           ["home_improvement", "medical_expenses"])
-      t.string :loan_amount             #  3 formats: n, min:max, n+
+      # loan
+      t.string :loan_amount
       t.string :ssn
 
-      # consent fields
-      t.boolean :tcpa_consent
-      t.boolean :fcra_consent
-      t.string  :tcpa_language
-      t.string  :fcra_language
+      # META_FIELDS
+      t.jsonb :meta_fields, default: {}
 
       t.timestamps
     end

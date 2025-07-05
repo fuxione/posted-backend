@@ -147,6 +147,8 @@ CREATE TABLE public.leads (
     user_agent character varying,
     txid character varying,
     jornaya_id character varying,
+    tcpa_language character varying,
+    fcra_language character varying,
     first_name character varying,
     last_name character varying,
     email character varying,
@@ -159,13 +161,9 @@ CREATE TABLE public.leads (
     zip character varying,
     country character varying,
     date_of_birth character varying,
-    loan_types character varying[],
     loan_amount character varying,
     ssn character varying,
-    tcpa_consent boolean,
-    fcra_consent boolean,
-    tcpa_language character varying,
-    fcra_language character varying,
+    meta_fields jsonb DEFAULT '{}'::jsonb,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
