@@ -23,9 +23,11 @@ class Api::LeadsController < ApiController
   end
 
   def status
-    lead = SecureRandom.uuid
+    lead = Lead.find(params[:id])
 
-    success(LeadBlueprint.render_as_hash(lead))
+    success(LeadBlueprint.render_as_hash({
+      status: "PENDING"
+    }))
   end
 
   private
