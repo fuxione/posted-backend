@@ -15,7 +15,10 @@ class Api::LeadsController < ApiController
   def update
     lead = Lead.find(params[:id])
 
-    if lead.update(lead_params)
+    lead.assign_attributes(lead_params[:attributes] || {})
+    lead.assign_attributes(lead_params[:fields]     || {})
+
+    if lead.save
       return success(LeadBlueprint.render_as_hash(lead))
     end
 
@@ -35,7 +38,7 @@ class Api::LeadsController < ApiController
   def lead_params
     params.permit(
       attributes: Lead::ATTRIBUTES,
-      fields: Lead::FIELDS,
+      fields:     Lead::FIELDS
     )
   end
 end
