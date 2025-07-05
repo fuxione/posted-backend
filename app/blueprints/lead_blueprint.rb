@@ -33,22 +33,11 @@
 #  jornaya_id    :string
 #
 class LeadAttributeBlueprint < Blueprinter::Base
-  fields :txid, :jornaya_id
+  fields *Lead::ATTRIBUTES
 end
 
 class LeadFieldBlueprint < Blueprinter::Base
-  fields :first_name,
-    :last_name,
-    :email,
-    :phone,
-    :work_phone,
-    :address,
-    :address2,
-    :city,
-    :state,
-    :zip,
-    :country,
-    :date_of_birth
+  fields *Lead::FIELDS
 end
 
 class LeadBlueprint < Blueprinter::Base

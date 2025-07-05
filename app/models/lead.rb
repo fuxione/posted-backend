@@ -36,4 +36,24 @@
 class Lead < ApplicationRecord
   has_many :request_logs
   has_many :stack_results
+
+  ATTRIBUTES = %w[
+    txid
+    jornaya_id
+  ]
+
+  FIELDS = %w[
+    first_name
+    last_name
+    email
+    phone
+    work_phone
+    address
+    address2
+    city
+    state
+    zip
+    country
+    date_of_birth
+  ]
 end

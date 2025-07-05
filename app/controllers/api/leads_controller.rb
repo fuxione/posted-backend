@@ -13,15 +13,27 @@ class Api::LeadsController < ApiController
   end
 
   def update
-    lead = Lead.new
-    lead.id = SecureRandom.uuid
+    lead = Lead.find(params[:id])
 
-    success(LeadBlueprint.render_as_hash(lead))
+    if lead.update(lead_params)
+      return success(LeadBlueprint.render_as_hash(lead))
+    end
+
+    error(lead.errors.full_messages)
   end
 
   def status
     lead = SecureRandom.uuid
 
     success(LeadBlueprint.render_as_hash(lead))
+  end
+
+  private
+
+  def lead_params
+    params.permit(
+      attributes: Lead::ATTRIBUTES,
+      fields: Lead::FIELDS,
+    )
   end
 end
