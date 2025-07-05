@@ -37,14 +37,12 @@ class Lead < ApplicationRecord
   has_many :request_logs
   has_many :stack_results
 
-  # TODO rename this stupid thing
-  ATTRIBUTES = %w[
+  INTERNAL_FIELDS = %w[
     txid
     jornaya_id
   ].freeze
 
-  # TODO rename this stupid thing
-  FIELDS = %w[
+  USER_FIELDS = %w[
     first_name
     last_name
     email
@@ -59,9 +57,9 @@ class Lead < ApplicationRecord
     date_of_birth
   ].freeze
 
-  def assign_fields!(fields)
+  def assign_fields!(fields, whitelist)
     fields ||= {}
-    unpermitted = fields.keys - FIELDS
+    unpermitted = fields.keys - whitelist
     raise ActionController::UnpermittedParameters.new(unpermitted) if unpermitted.present?
 
     fields.each do |field, value|

@@ -32,22 +32,22 @@
 #  updated_at    :datetime         not null
 #  jornaya_id    :string
 #
-class LeadAttributeBlueprint < Blueprinter::Base
-  fields *Lead::ATTRIBUTES
+class LeadInternalFieldsBlueprint < Blueprinter::Base
+  fields *Lead::INTERNAL_FIELDS
 end
 
-class LeadFieldBlueprint < Blueprinter::Base
-  fields *Lead::FIELDS
+class LeadUserFieldsBlueprint < Blueprinter::Base
+  fields *Lead::USER_FIELDS
 end
 
 class LeadBlueprint < Blueprinter::Base
   identifier :id
 
-  field :fields do |lead|
-    LeadFieldBlueprint.render_as_hash(lead)
+  field :internal_fields do |lead|
+    LeadInternalFieldsBlueprint.render_as_hash(lead)
   end
 
-  field :attributes do |lead|
-    LeadAttributeBlueprint.render_as_hash(lead)
+  field :user_fields do |lead|
+    LeadUserFieldsBlueprint.render_as_hash(lead)
   end
 end

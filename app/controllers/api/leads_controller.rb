@@ -15,7 +15,8 @@ class Api::LeadsController < ApiController
   def update
     lead = Lead.find(params[:id])
 
-    lead.assign_fields!(params[:fields])
+    lead.assign_fields!(params[:internal_fields], Lead::INTERNAL_FIELDS)
+    lead.assign_fields!(params[:user_fields], Lead::USER_FIELDS)
 
     if lead.save
       return success(LeadBlueprint.render_as_hash(lead))
