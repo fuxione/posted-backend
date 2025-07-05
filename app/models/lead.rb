@@ -30,7 +30,7 @@
 #  tcpa_language            :string
 #  txid                     :string
 #  user_agent               :string
-#  vertical                 :string
+#  vertical                 :string           not null
 #  work_phone               :string
 #  zip                      :string
 #  created_at               :datetime         not null
@@ -92,6 +92,7 @@ class Lead < ApplicationRecord
   has_many :request_logs
   has_many :stack_results
 
+  # request
   validates :host,       presence: true
   validates :path,       presence: true
   validates :ip_address, presence: true
@@ -119,7 +120,7 @@ class Lead < ApplicationRecord
   validates :credit_score,             presence: true, allow_nil: true, range_amount: { currency: false }
 
   # internal
-  validates :vertical,      presence: true, allow_nil: true, inclusion: { in: VERTICALS, message: "must be a valid vertical" }
+  validates :vertical,      presence: true, inclusion: { in: VERTICALS, message: "must be a valid vertical" }
   validates :txid,          presence: true, allow_nil: true
   validates :jornaya_id,    presence: true, allow_nil: true
   validates :tcpa_language, presence: true, allow_nil: true

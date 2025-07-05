@@ -1,6 +1,7 @@
 class CreateLeads < ActiveRecord::Migration[8.0]
   def change
     create_table :leads, id: :uuid do |t|
+      # REQUEST FIELDS
       t.string :host,       null: false
       t.string :path,       null: false
       t.jsonb  :query,      null: false, default: {}
@@ -9,8 +10,6 @@ class CreateLeads < ActiveRecord::Migration[8.0]
       t.string :user_agent
 
       # USER_FIELDS
-      # ===========
-
       # profile
       t.string :first_name
       t.string :last_name
@@ -25,7 +24,6 @@ class CreateLeads < ActiveRecord::Migration[8.0]
       t.string :country
       t.string :date_of_birth
       t.string :ssn
-
       # loan
       t.string :loan_amount
       t.string :debt_amount
@@ -35,14 +33,10 @@ class CreateLeads < ActiveRecord::Migration[8.0]
       t.string :credit_score
 
       # META_FIELDS
-      # ===========
-
       t.jsonb :meta_fields, default: {}
 
       # INTERNAL_FIELDS
-      # ===============
-
-      t.string :vertical
+      t.string :vertical, null: false
       t.string :txid
       t.string :jornaya_id
       t.string :tcpa_language
