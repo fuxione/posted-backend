@@ -17,8 +17,7 @@ class Api::LeadsController < ApiController
   def update
     lead = Lead.find(params[:id])
 
-    lead.assign_fields!(params[:internal_fields], Lead::INTERNAL_FIELDS)
-    lead.assign_fields!(params[:user_fields], Lead::USER_FIELDS)
+    lead.assign_fields!(params[:fields], Lead::FIELDS)
 
     lead.evaluate_meta_fields(params[:meta_fields])
 

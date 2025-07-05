@@ -39,7 +39,11 @@
 #  jornaya_id               :string
 #
 class Lead < ApplicationRecord
-  USER_FIELDS = %w[
+  FIELDS = %w[
+    txid
+    jornaya_id
+    tcpa_language
+    fcra_language
     first_name
     last_name
     email
@@ -57,13 +61,6 @@ class Lead < ApplicationRecord
     loan_amount
     debt_amount
     monthly_income
-  ].freeze
-
-  INTERNAL_FIELDS = %w[
-    txid
-    jornaya_id
-    tcpa_language
-    fcra_language
   ].freeze
 
   VERTICALS = %w[

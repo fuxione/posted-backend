@@ -139,12 +139,12 @@ ALTER SEQUENCE public.clicks_id_seq OWNED BY public.clicks.id;
 
 CREATE TABLE public.leads (
     id uuid DEFAULT gen_random_uuid() NOT NULL,
+    wid integer NOT NULL,
+    vertical character varying NOT NULL,
     host character varying NOT NULL,
     path character varying NOT NULL,
     query jsonb DEFAULT '{}'::jsonb NOT NULL,
     ip_address character varying NOT NULL,
-    referrer character varying,
-    user_agent character varying,
     first_name character varying,
     last_name character varying,
     email character varying,
@@ -165,12 +165,12 @@ CREATE TABLE public.leads (
     employment_pay_frequency character varying,
     credit_score character varying,
     meta_fields jsonb DEFAULT '{}'::jsonb,
-    wid integer NOT NULL,
-    vertical character varying NOT NULL,
     txid character varying,
     jornaya_id character varying,
     tcpa_language character varying,
     fcra_language character varying,
+    referrer character varying,
+    user_agent character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
