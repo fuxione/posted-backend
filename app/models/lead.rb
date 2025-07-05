@@ -39,28 +39,34 @@
 #  jornaya_id               :string
 #
 class Lead < ApplicationRecord
-  FIELDS = %w[
-    txid
-    jornaya_id
-    tcpa_language
-    fcra_language
-    first_name
-    last_name
-    email
-    phone
-    work_phone
-    address
-    address2
-    city
-    state
-    zip
-    country
-    date_of_birth
-    ssn
-    credit_score
-    loan_amount
-    debt_amount
-    monthly_income
+  FIELDS = [
+    # tracking
+    "txid",
+    "jornaya_id",
+    # consent
+    "tcpa_language",
+    "fcra_language",
+    # profile
+    "first_name",
+    "last_name",
+    "email",
+    "phone",
+    "work_phone",
+    "address",
+    "address2",
+    "city",
+    "state",
+    "zip",
+    "country",
+    "date_of_birth",
+    "ssn",
+    # loan
+    "loan_amount",
+    "debt_amount",
+    "monthly_income",
+    "employment_status",
+    "employment_pay_frequency",
+    "credit_score"
   ].freeze
 
   VERTICALS = %w[

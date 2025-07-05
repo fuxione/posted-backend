@@ -10,7 +10,7 @@ class CreateLeads < ActiveRecord::Migration[8.0]
       t.jsonb  :query,      null: false, default: {}
       t.string :ip_address, null: false
 
-      # user fields
+      # profile
       t.string :first_name
       t.string :last_name
       t.string :email
@@ -24,6 +24,8 @@ class CreateLeads < ActiveRecord::Migration[8.0]
       t.string :country
       t.string :date_of_birth
       t.string :ssn
+
+      # loan
       t.string :loan_amount
       t.string :debt_amount
       t.string :monthly_income
