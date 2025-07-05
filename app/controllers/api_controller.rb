@@ -1,7 +1,6 @@
 class ApiController < ActionController::API
   def success(data = nil)
-    payload = { status: "success", data: data }
-    payload[:seq] = params[:seq] if params[:seq].present?
+    payload = { status: "success", data: data, meta: { seq: params[:seq] || 0 } }
     render json: payload
   end
 
