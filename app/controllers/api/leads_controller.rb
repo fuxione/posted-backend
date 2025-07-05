@@ -19,9 +19,11 @@ class Api::LeadsController < ApiController
 
     lead.assign_fields(params[:fields])
 
-    # save clears previous errors, so we have to check prior to saving.
-    # normally one would never need to do this, except that we want full
-    # manual control over the whitelisted fields, some of which are virtual
+    # normally you never check errors directly, you apply attributes
+    # optimistically during the validation phase, and save will clear the
+    # errors and run validations. Due to the fact we want total custom control
+    # over our own whitelisted fields, we sort of emulate validation here by
+    # checking the errors directly.
     return error(lead.errors.full_messages) if lead.errors.any?
 
     if lead.save
